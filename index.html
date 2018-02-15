@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Airline Ancillaries</title>
+		<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet" />
+		<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700" rel="stylesheet" />
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
+	
+		<script src="https://use.fontawesome.com/1f0a86add2.js"></script>
+	
+		<meta http-equiv="x-ua-compatible" content="IE=edge" />
+	
+
+	<style>
+		body {
+			font-family: "Source Sans Pro", "Roboto Slab", arial, sans-serif;
+		}
+		
+		h1, h2, h3, h4, h5, h6 {
+			font-weight: 700;
+		}
+		
+		h1 {
+			font-size: 3rem;
+		}	
+	
+		.table-container {
+			max-width:1200px;
+			max-height: 800px;
+			margin: 0 auto;
+			overflow-y: scroll;
+			font-size: 10px;
+			margin-top: 60px;
+		}
+		
+		.table-container table {
+			table-layout: fixed;
+		}
+		
+		.table-container .A {
+			font-size: 12px;
+			font-weight: bold;
+		}
+		
+		.table-container .table .thead-dark th  {
+			background-color: #189bb0;
+			border-color: #189bb0;
+			word-wrap: break-word;
+			width: 150px;
+			vertical-align: middle;
+			text-align: center;
+		}
+		
+		.table-container td{
+			max-width: 200px;
+			word-wrap: break-word;
+		}
+		
+		.airline-name {
+			font-weight: 700;
+		}
+		
+		.airline-list {
+			width:100%;
+			padding: 10px;
+			background: #f6f6f6;
+			margin-right: 10px;
+			margin-bottom: 10px;
+		}
+		form input, form select {
+			margin-right:10px;
+		}
+		
+		.airline-column {
+			display: inline-block;
+			vertical-align: top;
+			padding:15px;
+		}
+		
+		.airline-extra {
+			display: none;
+		}
+		
+		.airline-text {
+			font-size: .875rem;
+			font-weight: 600;
+			text-transform: uppercase;
+		}
+		
+		.airline-view {
+			cursor: pointer;
+			color: #189bb0;
+		}
+		
+		.grid-icon {
+			color: rgba(0,0,0,0.3);
+			cursor: pointer;
+			padding: 2px;
+			font-size: 20px;
+		}
+		
+		.grid-icons {
+			margin-bottom: 10px;
+			display: none;
+		}
+		
+		.grid-icon.active {
+			color: #333333;
+		}
+		
+		.form-control {
+			display: inline-block;
+			background-color: #f6f6f6;
+			border: 1px solid #eaeaea;
+			height: 3.5rem !important;
+			line-height: 2.875rem;
+			padding: 0.5rem;
+			padding-left: 1.5625rem;
+			padding-right: 5.125rem;
+			cursor: pointer;
+			text-transform: uppercase;
+			color: #242039;
+			font-size: 0.875rem;
+			border: 1px solid #eaeaea;
+			background-color: #f6f6f6;
+			border-radius: 3px;
+		}
+		
+		[type="submit"]{
+			text-align: center;
+			padding: 1rem 1.875rem;
+			margin: 1.25rem 0;
+			font-size: 0.875rem;
+			font-weight: 600;
+			text-transform: uppercase;
+			display: inline-block;
+			min-height: 3.3125rem;
+			line-height: normal;
+			outline: 0;
+			color: #FFF;
+			border: 2px solid #1a9cb1;
+			background-color: #1a9cb1;
+			color: #FFF;
+			border-radius: 4px;
+		}
+		
+		.filter-title {
+			display: none;
+			font-family: "Source Sans Pro", "Roboto Slab", arial, sans-serif;
+			font-weight: 600;
+			background: #189bb0;
+			color: #ffffff;
+			padding:5px;
+			text-align: center;
+			margin-top: 15px;
+		}
+		
+		.form-check {
+			background: #f6f6f6;
+			padding: 1.25rem;
+		}
+		
+		.filters-badge {
+			background: #189bb0;
+			border-color: #189bb0;
+			margin-right: 5px;
+			margin-bottom: 5px;
+			display:none;
+			margin-bottom: 10px;
+		}
+		
+		.airlines-checkboxes {
+			max-height: 400px;
+			overflow-y: scroll;
+		}
+		
+		.filter-selects{
+			position: relative;
+			padding: 30px 40px 40px 40px;
+			max-width: 820px;
+			margin: 0 auto;
+			z-index: 2;
+		}
+		
+		.filter-container {
+			position: relative;
+			display: inline-block;
+			min-width: 33%;
+
+			font-size: 0;
+		}
+		
+		.filter-select {
+			font-size: 16px;
+			width:100%;
+			background: #ffffff;
+			padding: 10px 20px;
+			margin-right:20px;
+			border: 1px solid #d7d7d7;
+			cursor: pointer;
+			
+		}
+		
+		.airline-select {
+			font-size: 16px;
+			position: relative;
+			padding: 10px 20px;
+			width:100%;
+			border:1px solid #d7d7d7;
+			background: #ffffff;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			cursor: pointer;
+		}
+		
+		.airline-select::-ms-expand {
+			display: none;
+		}
+		
+		.filter-select:after, .airline-select-icon {
+			content: "\f107";
+			position:absolute;
+			right: 30px;
+			top:35%;
+			display: inline-block;
+			font: normal normal normal 14px/1 FontAwesome;
+			font-size: 16px;
+			text-rendering: auto;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+			
+		}
+		
+		.icon-x:after{
+			content: "\f00d";
+		}
+		
+		.ancillary-checkboxes, .gds-checkboxes, .airlines-checkboxes {
+			position: absolute;
+			font-size: 16px;
+			top: 100%;
+			left: 0px;
+			z-index: 3;
+			background: #ffffff;
+			border:1px solid #d7d7d7;
+			border-top: none;
+			width: 100%;
+			display: none;
+		}
+		
+		.filter-selects-title {
+			color: #ffffff;
+			margin-bottom: 20px;
+			font-weight: 600;
+			font-size: 20px;
+			text-transform: uppercase;
+		}
+		
+		.container-background {
+			background: url('https://www2.arccorp.com/globalassets/homepage/expediareport-jumbotron_1400x680.jpg') center center no-repeat;
+			background-size: cover;
+			color: #ffffff;
+			padding-top: 50px;
+			padding-bottom: 50px;
+		}
+		
+		.container-filter {
+			background: #189bb0 url(https://www2.arccorp.com/static/images/map-pattern.svg);
+		}
+		
+		.filter-clear {
+			text-align:center;
+		}
+		
+		.filter-clear .btn-light {
+			color: #189bb0;
+			border: none;
+			margin-top: 20px;
+			font-weight: 600;
+		}
+		
+		.expandAll .airline-extra {
+			display: block;
+		}	
+		
+		@media screen and (max-width: 992px) {
+			.filter-container , .ancillary-checkboxes, .gds-checkboxes, .airlines-checkboxes {
+				width: 100%;
+				margin:0 auto 15px auto;
+			}
+		}
+		
+	</style>
+	
+	</head>
+	
+	<body>
+	
+
+	<div class="navbar">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="navbar-brand">
+						<a href="/" class="logo"><img src="https://arccorp.com/email/arclogo.png" alt=""></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-background">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="animated slideInDown" style="text-align:center; padding-bottom:50px;">
+						<small style="font-weight:700; text-transform: uppercase; color:#ffffff;">Airline Support & Training</small>
+						<h1>Airline Ancillaries</h1>
+					
+					</div>
+					<div style="max-width:768px; margin: 0 auto;">
+						<p>Looking for one place to review and compare current value-added ancillary products available from each airline via their global distribution system (GDS) partners? ARC is pleased to offer the Airline Ancillary Matrix as a central reference tool to summarize ancillary products available for ARC's participating carriers.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container-filter">
+		<div class="container">
+			<div class="row">
+					<div class="col-md-12">
+
+						
+						<div class="filter-selects animated fadeIn">
+						
+							<div style="text-align: center">
+								<div class="filter-selects-title">Filter By:</div>
+							</div>
+							
+							<div class="filter-container">
+								<div class="filter-select ancillary-select">
+									Ancillaries <span class="filter-number"></span>
+								</div>
+								
+								<div class="form-check ancillary-checkboxes">
+									<input id="anBaggage" name="ancillaryCheck" type="checkbox" value="Baggage"> Baggage<br/>
+									<input id="anFare" name="ancillaryCheck" type="checkbox" value="Fare_families"> Fare families<br/>
+									<input id="anInflight" name="ancillaryCheck" type="checkbox" value="Inflight_Entertainment"> Inflight Entertainment<br/>
+									<input id="anLounge" name="ancillaryCheck" type="checkbox" value="Lounge_Access"> Lounge Access<br/>
+									<input id="anMeals" name="ancillaryCheck" type="checkbox" value="Meals"> Meals <br/>
+									<input id="anPets" name="ancillaryCheck" type="checkbox" value="Pets"> Pets <br/>
+									<input id="anSeats" name="ancillaryCheck" type="checkbox" value="Seats"> Seats <br/>
+									<input id="anUnaccompanied" name="ancillaryCheck" type="checkbox" value="Unaccompanied_Minor"> Unaccompanied Minor <br/>
+									<input id="anSeats" name="ancillaryCheck" type="checkbox" value="Sports_Equipment"> Sports Equipment <br/>
+									<input id="anAdditional" name="ancillaryCheck" type="checkbox" value="Additional_Services"> Additional Services
+								</div>
+							</div>
+							
+							<div class="filter-container">
+								<div class="filter-select gds-select">
+									GDS <span class="filter-number"></span>
+								</div>
+
+								<div class="form-check gds-checkboxes">
+									<input id="gdsAmadeus" name="gdsCheck" type="checkbox" value="Amadeus"> Amadeus<br/>
+									<input id="gdsApollo" name="gdsCheck" type="checkbox" value="Apollo"> Apollo<br/>
+									<input id="gdsGalileo" name="gdsCheck" type="checkbox" value="Galileo"> Galileo<br/>
+									<input id="gdsSabre" name="gdsCheck" type="checkbox" value="Sabre"> Sabre<br/>
+									<input id="gdsWorldspan" name="gdsCheck" type="checkbox" value="Worldspan"> Worldspan
+								</div>						
+							</div>
+							
+							<div class="filter-container">
+								<select class="airline-select">
+									<option value="">Airline <span class="filter-number"></span></option>
+								</select>
+								<div class="airline-select-icon"><i class="fa fa-angle-down"></i></div>
+								<div class="form-check airlines-checkboxes">
+								</div>
+							</div>
+							
+							<div class="filter-clear">
+								<button class="btn btn-light">Clear Filters</button>
+							</div>
+							
+						</div>
+
+					</div>
+				</div>
+			
+			
+		</div>
+	</div>
+	
+	<div class="" style="background: #ffffff;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 style="margin-top:20px; margin-right: 20px;display: inline-block;">Search Results (<span class="resultsTitle"></span>)</h2>
+					<div class="grid-icons" style="display: inline-block;">
+						Layout: 
+						<span class="grid-icon" data-col="col-md-12"><i class="fa fa-stop"></i></span>
+						<span class="grid-icon active" data-col="col-md-6"><i class="fa fa-th-large"></i></span>
+						<span class="grid-icon" data-col="col-md-4"><i class="fa fa-th"></i></span>
+					</div>	
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div style="margin:20px 0;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+
+					
+					<div class="filters-row">
+						<button id="filters-Amadeus" type="button" class="filters-badge btn btn-secondary btn-sm">Amadeus<span class="badge"> <i class="fa fa-times"></i></span></button>
+						<button id="filters-Apollo" type="button" class="filters-badge btn btn-secondary btn-sm">Apollo<span class="badge"> <i class="fa fa-times"></i></span></button>
+						<button id="filters-Galileo" type="button" class="filters-badge btn btn-secondary btn-sm">Galileo<span class="badge"> <i class="fa fa-times"></i></span></button>
+						<button id="filters-Sabre" type="button" class="filters-badge btn btn-secondary btn-sm">Sabre<span class="badge"> <i class="fa fa-times"></i></span></button>
+						<button id="filters-Worldspan" type="button" class="filters-badge btn btn-secondary btn-sm">Worldspan<span class="badge"> <i class="fa fa-times"></i></span></button>
+					</div>
+					
+					<div class="results row">
+					
+					</div>
+				</div>
+			</div>
+		</div>
+			
+			
+		</div>
+		
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script> 
+
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.11.19/xlsx.full.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/defiant@1.4.5/dist/defiant.min.js"></script>
+
+		<script>	
+		
+			var jsonData = { "airlines": [] };
+			var jsonHeaders = {};
+			var ancillaryFilters = [];
+			var gdsFilters = [];
+			var airlineFilters = [];
+			
+			var headerRows = ["A"];
+			
+			
+			/* START ========================================================*/
+			//defiantFunction - filter JSON
+			
+			function defiantContains(myData, field, searchTerm){
+			
+				var s = '//*[' + field + '[contains(' + searchTerm + ', "' + searchTerm + '")]]';
+
+				//if ancillaries all - and filter with GDS
+				if (field == "all" && searchTerm == "all"){
+					s = '//airlines';
+				}
+				else if (field == "all") {
+					s = '//*[' + searchTerm + '="' + searchTerm +'"]/..';
+				}
+				//if GDS all - and filter with ancillaries
+				else if(searchTerm == "all") {
+					s = '//*[' + field + ']';
+				}
+				else if(field == "name") {
+					s = '//*[contains(name, "' + searchTerm.replace(".", "") +'")]';
+				}
+				
+				console.log(s);
+				
+				return JSON.search(myData, s);
+			}	
+			/* END ========================================================*/
+			
+			/* START ========================================================*/
+			//equalityFunc
+			function equalNames(union1, union2){
+				
+				return union1.name === union2.name;
+
+			}
+			
+			/* END ========================================================*/
+			
+			/* START ========================================================*/
+				//intersect
+			function intersect(a, b) {
+					var t;
+					
+					if (b.length > a.length) t = b, b = a, a = t; // indexOf to loop over shorter
+					
+					return a.filter(function(e) {
+						return b.some(function(f) {
+							return f.name === e.name;
+						});
+					});
+					
+			}
+			
+			/* END ========================================================*/
+			
+			/* START ========================================================*/
+			//arrayUntion
+			function arrayUnion(arr1, arr2, equalityFunc) {
+					var union = arr1.concat(arr2);
+
+					for (var i = 0; i < union.length; i++) {
+							for (var j = i+1; j < union.length; j++) {
+									if (equalityFunc(union[i], union[j])) {
+											union.splice(j, 1);
+											j--;
+									}
+							}
+					}
+
+					return union;
+			}
+			/* END ========================================================*/
+			
+			
+			/* START ========================================================*/
+			//Axios ajax call to get xlsx file and parse data into a consumable JSON variable
+			//Then calls applyFilter() function to apply default layout
+			axios({
+				method:'get',
+				url: "https://www2.arccorp.com/globalassets/test/matrix.xlsx",
+				responseType:'arraybuffer'
+			})
+				.then(function(response) {
+					
+					//Var initializiation 
+					/*
+						for xlsx response vars
+					*/
+					var data = new Uint8Array(response.data);
+					var workbook = XLSX.read(data, {type:"array"});
+								
+					var workbookData = workbook["Sheets"]["Sheet1"];
+
+					
+					//traverseEntireWorkBook
+					for(var key in workbookData) {
+					
+						//value in cell
+						var val = workbookData[key].w;
+					
+						//traverse through each cell in sheet
+						if(key.indexOf("!") < 0){
+							var str = key.match(/[a-z]+|[^a-z]+/gi);
+
+										
+							//setHeaderNames first
+							/*
+								gets the key and letter matching for getting headers from the excel row column 
+							*/
+							
+							//if on first row, then it is a header, add to header array
+							//also add filter button markup to filters row
+							if(str[1] === "1") {
+								jsonHeaders[key[0]] = val.replace(/ /g,"_");
+								//add filters 
+								$(".filters-row").append('<button id="filters-' + val.replace(/ /g,"_") + '" type="button" class="filters-badge btn btn-secondary btn-sm">' + val + ' <span class="badge"> <i class="fa fa-times"></i></span></button>');
+							}
+							//if first column, then create new obj to insert into Json Data starting with first obj
+							else if(str[0] === "A" && str[1] !== "1") {
+							
+								//add new object
+								jsonData["airlines"].push( {
+									"name" : val
+								});
+								
+								//add filter buttons
+								$(".filters-row").append('<button id="filters-' + val.replace(/ /g,"_").replace(".", "") + '" type="button" class="filters-badge btn btn-secondary btn-sm">' + val + ' <span class="badge"> <i class="fa fa-times"></i></span></button>');
+								
+								$(".airlines-checkboxes").append('<input id="name' + val.replace(/ /g,"_").replace(".", "") + '" name="nameCheck" type="checkbox" value="' + val.replace(/ /g,"_") + '"> ' + val + "<br/>");
+								
+								$(".airline-select").append('<option id="name' + val.replace(/ /g,"_").replace(".", "") + '" name="nameCheck" type="checkbox" value="' + val.replace(/ /g,"_") + '"> ' + val + "<br/>");
+								
+							}
+							//else insert into latest object inserted in array that was created above
+							else {
+								
+								//insert into last object inserted with corresponding tag
+								var tag = jsonHeaders[str[0]];
+								var tagVal = val.replace(/ *\([^)]*\) */g, "");
+								
+								//if property already exists, push push to that array (aka) amadeus and apollo in baggage
+								if( jsonData["airlines"][ jsonData["airlines"].length - 1 ][tag] != undefined ) {
+
+									jsonData["airlines"][ jsonData["airlines"].length - 1 ][tag][0][tagVal] = val;
+								}
+
+								//else set property with val in array
+								else {
+									jsonData["airlines"][ jsonData["airlines"].length - 1 ][tag] = [{}];
+									jsonData["airlines"][ jsonData["airlines"].length - 1 ][tag][0][tagVal] = val;
+								}
+								
+							}
+							
+						}
+						
+					}			
+				
+				//add filter badge listener for removing the filter
+				$(".filters-badge").click(function(){
+					var val = $(this).prop("id").replace("filters-", "");
+					var aindex = ancillaryFilters.indexOf(val.replace(" ", "_"));
+					var gindex = gdsFilters.indexOf(val.replace(" ", "_"));
+					var nindex = airlineFilters.indexOf(val.replace(/_/g, " "));
+					
+					if(gindex > -1){
+						gdsFilters.splice(gindex, 1);
+					}
+					else if(aindex > -1){
+						ancillaryFilters.splice(aindex, 1);
+					}
+					else if (nindex > -1) {
+						airlineFilters.splice(nindex , 1);
+
+						//undisabled select
+						//$(".airline-select").prop("disabled", false);
+
+						//set back to default
+						$(".airline-select").val("");
+					}
+					
+					$("input[type='checkbox'][value='" + val + "']").prop("checked", false);
+					$(this).hide();
+					applyFilter();
+					
+				});
+				
+				$('.airline-select').change(function() {
+				
+					var val = $(this).val();
+					var valU = $(this).val().replace(/ /g, "_").replace(".", "");;
+					var index = airlineFilters.indexOf(val.replace(/_/g, " "));
+					
+					//if val is default, empty array
+					if(val == ""){
+						airlineFilters = [];
+					}
+					//else insert it into array 
+					else {
+						airlineFilters.push(val.replace(/_/g, " ").replace(".", ""));
+						$("#filters-" + valU).show();
+						//$(this).prop("disabled", true);
+					}
+					
+				//applyFilter to results
+					applyFilter();
+				});
+				
+				applyFilter();
+					
+				})
+				.catch(function (error) {
+					console.log(error);
+				});
+				/* END ========================================================*/
+		
+				
+				/* START ========================================================*/
+				//listener for applying grid layout on the buttons
+				$(".grid-icon").click(function(){
+					var col = $(this).data("col");
+					//console.log(col);
+					
+					$(".results .bs-col").removeClass("col-md-6").removeClass("col-md-12").removeClass("col-md-4");
+					$(".grid-icon").removeClass("active");
+					
+					$(".results .bs-col").addClass(col);
+					$(this).addClass("active");
+				});
+				
+				/* END ========================================================*/
+				
+				/* START ========================================================*/
+						
+				function applyFilter() {
+
+					$(".results").html("");
+					$(".results").removeClass("expandAll");
+					
+					$(".grid-icons").show();
+					
+					var arr = [];
+					
+					//if both are empty, show all
+					if(ancillaryFilters.length < 1 && gdsFilters.length < 1 && airlineFilters.length < 1) {
+						arr = defiantContains(jsonData, "all", "all");
+					}
+					//just ancillary filters
+					else if (ancillaryFilters.length >= 1 && gdsFilters.length == 0 && airlineFilters.length == 0) {
+		
+						var arrTemp = defiantContains(jsonData, ancillaryFilters[0], "all");
+						
+						//if multiple filters
+						if(ancillaryFilters.length > 1){
+							for(var i = 1; i < ancillaryFilters.length; i++) {
+												
+								arrTemp = intersect( arrTemp, defiantContains(jsonData, ancillaryFilters[i], "all") );
+								
+							}
+						}
+						
+						arr = arrTemp;
+						//console.log(arr);
+					}
+					//gds filters 
+					else if(ancillaryFilters.length == 0 && gdsFilters.length >= 1 && airlineFilters.length == 0) {
+					
+						var arrTemp = defiantContains(jsonData, "all", gdsFilters[0]);
+						
+						//if multiple filters
+						if(gdsFilters.length > 1){
+							for(var i = 1; i < gdsFilters.length; i++) {
+												
+								arrTemp = intersect( arrTemp, defiantContains(jsonData, "all", gdsFilters[i]) );
+								
+							}
+						}
+						
+						arr = arrTemp;
+						
+					}
+					//just airlines
+					else if(ancillaryFilters.length == 0 && gdsFilters.length == 0 && airlineFilters.length >= 1){
+					
+						var arrTemp = defiantContains(jsonData, "name", airlineFilters[0]);
+						
+						//if multiple filters
+						if(airlineFilters.length > 1){
+							for(var i = 1; i < airlineFilters.length; i++) {
+												
+								arrTemp = arrayUnion( arrTemp, defiantContains(jsonData, "name", airlineFilters[i]), equalNames );
+								
+							}
+						}
+						
+						$(".results").addClass("expandAll");
+						
+						
+						
+						arr = arrTemp;
+					
+					}
+					//else both gds and ancillaries
+					else if(ancillaryFilters.length >= 1 && gdsFilters.length >= 1 && airlineFilters.length == 0){
+					
+						var arrTemp = defiantContains(jsonData, ancillaryFilters[0], gdsFilters[0]);
+					
+						if(ancillaryFilters.length > 1){
+							for(var i = 1; i < ancillaryFilters.length; i++) {
+												
+								arrTemp = intersect( arrTemp, defiantContains(jsonData, ancillaryFilters[i], "all") );
+								
+							}
+						}
+						
+						if(gdsFilters.length > 1){
+							for(var i = 1; i < gdsFilters.length; i++) {
+												
+								arrTemp = intersect( arrTemp, defiantContains(jsonData, "all", gdsFilters[i]) );
+								
+							}
+						}
+						
+						arr = arrTemp;
+					
+					}
+					//if ancillaries and gds
+					else if(ancillaryFilters.length >= 1 && gdsFilters.length >= 1 && airlineFilters.length == 0){
+					
+						var arrTemp = defiantContains(jsonData, "all", gdsFilters[0]);
+						
+						//if multiple filters
+						if(gdsFilters.length > 1){
+							for(var i = 1; i < gdsFilters.length; i++) {
+												
+								arrTemp = intersect( arrTemp, defiantContains(jsonData, "all", gdsFilters[i]) );
+								
+							}
+						}
+						
+						if(airlineFilters.length > 0){
+						
+							var airlineIntersect = [];
+							var airlineTemp = [];
+						
+							for(var i = 0; i < airlineFilters.length; i++) {
+												
+								airlineTemp = intersect( arrTemp, defiantContains(jsonData, "name", airlineFilters[i]), equalNames );
+								airlineIntersect = arrayUnion(airlineIntersect, airlineTemp, equalNames);
+							}
+							
+							arrTemp = airlineIntersect;
+						}
+						
+						console.log(arrTemp);
+						arr = arrTemp;
+						
+					}
+					//if ancillaries and airlines
+					else if(ancillaryFilters.length >= 1 && gdsFilters.length == 0 && airlineFilters.length >= 1){
+					
+						var arrTemp = defiantContains(jsonData, ancillaryFilters[0], "all");
+						
+						//if multiple filters
+						if(ancillaryFilters.length > 1){
+							for(var i = 1; i < ancillaryFilters.length; i++) {
+												
+								arrTemp = intersect( arrTemp, defiantContains(jsonData, ancillaryFilters[i], "all") );
+								
+							}
+						}
+						
+						if(airlineFilters.length > 0){
+						
+							var airlineIntersect = [];
+							var airlineTemp = [];
+						
+							for(var i = 0; i < airlineFilters.length; i++) {
+												
+								airlineTemp = intersect( arrTemp, defiantContains(jsonData, "name", airlineFilters[i]), equalNames );
+								airlineIntersect = arrayUnion(airlineIntersect, airlineTemp, equalNames);
+							}
+							
+							arrTemp = airlineIntersect;
+						}
+						
+						console.log(arrTemp);
+						arr = arrTemp;
+						
+					}
+					// all 3
+					else {
+						var arrTemp = defiantContains(jsonData, ancillaryFilters[0], gdsFilters[0]);
+					
+						if(ancillaryFilters.length > 1){
+							for(var i = 1; i < ancillaryFilters.length; i++) {
+												
+								arrTemp = intersect( arrTemp, defiantContains(jsonData, ancillaryFilters[i], "all") );
+								
+							}
+						}
+						
+						if(gdsFilters.length > 1){
+					
+							for(var i = 1; i < gdsFilters.length; i++) {
+												
+								arrTemp = intersect( arrTemp, defiantContains(jsonData, "all", gdsFilters[i]) );
+								
+							}
+						}
+						
+						if(airlineFilters.length > 0){
+						
+							var airlineIntersect = [];
+							var airlineTemp = [];
+						
+							for(var i = 0; i < airlineFilters.length; i++) {
+												
+								airlineTemp = intersect( arrTemp, defiantContains(jsonData, "name", airlineFilters[i]), equalNames );
+								airlineIntersect = arrayUnion(airlineIntersect, airlineTemp, equalNames);
+							}
+							
+							arrTemp = airlineIntersect;
+						}
+						
+						arr = arrTemp;
+										
+					}
+					
+					if( ancillaryFilters.length > 0 ) {
+						$(".ancillary-select .filter-number").html("(" + ancillaryFilters.length + ")");
+					}
+					else {
+						$(".ancillary-select .filter-number").html("");
+					}
+					
+					if( gdsFilters.length > 0 ){
+						$(".gds-select .filter-number").html("(" + gdsFilters.length + ")");
+					}
+					else {
+						$(".gds-select .filter-number").html("");
+					}
+					
+					if( airlineFilters.length > 0 ){
+						$(".airline-select .filter-number").html("(" + airlineFilters.length + ")");
+					}
+					else {
+						$(".airline-select .filter-number").html("");
+					}
+					
+					$(".resultsTitle").html(arr.length);
+					
+					if(arr.length == 0){
+						$(".results").html("<div class='airline-list'>No Results Found</div>");
+					}
+					
+					//console.log(arr);
+					
+					//render results
+					for(var i = 0; i < arr.length; i++) {
+						
+						$(".results").append("<div class='bs-col col-md-6 animated fadeIn'><div class='airline-list'><h3 class='airline-name'>" + arr[i].name +"</h3><div class='airline-extra'></div><div class='airline-view'> <span class='airline-text'>Show All</span> <i class='fa fa-angle-down'></i></div></div></div>");
+						
+						for(var key in arr[i]) {
+							
+							if(key != "name"){
+								
+								$(".results .airline-list .airline-extra").last().append("<div class='airline-column'><strong>" + key.replace("_", " ") + "</strong><br/></div>");
+								
+								for(var gds in arr[i][key][0]) {
+
+									$(".results .airline-list .airline-extra .airline-column").last().append(arr[i][key][0][gds] + "<br/>");
+								}
+							}
+							
+						}
+						
+						
+					}
+					
+					if($(".results").hasClass("expandAll")){
+						$(".airline-text").html("Hide");
+						$(".airline-view").find("i").removeClass("fa-angle-down").addClass("fa-angle-up");
+					}
+					
+					$(".airline-view").click(function(){
+						
+						var text = $(this).find(".airline-text");
+						
+						if( text.text() == "Show All" ) {
+							text.html("Hide");
+							$(this).find("i").removeClass("fa-angle-down").addClass("fa-angle-up");
+						}
+						else {
+							text.html("Show All");
+							$(this).find("i").removeClass("fa-angle-up").addClass("fa-angle-down");
+						}
+						
+						$(this).parent().find(".airline-extra").slideToggle();
+					});
+					
+
+					
+				}
+				/* END ========================================================*/
+
+				
+				//check ancillary function
+				$('[name="ancillaryCheck"]').change(function() {
+				
+					var val = $(this).val();
+					var valU = $(this).val().replace(" ", "_");
+					var index = ancillaryFilters.indexOf(val);
+					
+					//if in array, remove
+					if( index > -1 ) {
+						ancillaryFilters.splice(index, 1);
+						$("#filters-" + valU).hide();
+					}
+					//else insert it into array 
+					else {
+						ancillaryFilters.push(val);
+						$("#filters-" + valU).show();
+					}
+					
+					//applyFilter to results
+					applyFilter();
+				});
+				/* END ========================================================*/
+				
+				//check gds function
+				$('[name="gdsCheck"]').change(function() {
+				
+					var val = $(this).val();
+					var valU = $(this).val().replace(" ", "_");
+					var index = gdsFilters.indexOf(val);
+					
+					//if in array, remove
+					if( index > -1 ) {
+						gdsFilters.splice(index, 1);
+						$("#filters-" + valU).hide();
+					}
+					//else insert it into array 
+					else {
+						gdsFilters.push(val);
+						$("#filters-" + valU).show();
+					}
+					
+					//applyFilter to results
+					applyFilter();
+				});
+				
+				$(".filter-select").click(function(){
+				
+					if($(this).hasClass("icon-x")){
+				
+						if($(this).hasClass("ancillary-select")){
+							$(".ancillary-checkboxes").hide();
+						}
+						else if($(this).hasClass("gds-select")){
+							$(".gds-checkboxes").hide();
+						}
+						
+						$(".filter-select").removeClass("icon-x");
+					}
+					else if($(this).hasClass("ancillary-select")){
+						$(".filter-select").removeClass("icon-x");
+						$(".ancillary-checkboxes").show();
+						$(".gds-checkboxes").hide();
+						$(".airlines-checkboxes").hide();
+						$(this).addClass("icon-x");
+					}
+					else if($(this).hasClass("gds-select")){
+						$(".filter-select").removeClass("icon-x");
+						$(".ancillary-checkboxes").hide();
+						$(".gds-checkboxes").show();
+						$(".airlines-checkboxes").hide();
+						$(this).addClass("icon-x");
+					}
+
+							
+					
+				});
+				/* END ========================================================*/
+				
+				//clear filter button
+				$(".filter-clear .btn").click(function(){
+					ancillaryFilters = [];
+					gdsFilters = [];
+					airlineFilters = [];
+					
+					$("input[type=checkbox]:checked").prop("checked", false);
+					//undisabled select
+					//$(".airline-select").prop("disabled", false);
+
+					//set back to default
+					$(".airline-select").val("");
+					
+					$(".filters-badge").hide();
+					
+					applyFilter();
+				});
+
+				
+		</script>
+		
+	</body>
+</html>
