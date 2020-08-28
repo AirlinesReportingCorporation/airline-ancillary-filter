@@ -1,0 +1,390 @@
+.jumbotron__inside {
+    max-width: 960px;
+}
+
+.btn:hover, .btn:focus {
+      background: #189bb0;
+    border-color: #189bb0;
+}
+
+.btn-sm, .btn-group-sm > .btn {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-radius: 0.2rem;
+      background: #189bb0;
+    border-color: #189bb0;
+  box-shadow: none;
+}
+
+.jcf-select .jcf-select-opener {
+  background: #f6f6f6;
+  color: #242039;
+  border: none;
+}
+
+.ctaBtn, .ctaBtn:hover, .ctaBtn:focus {
+  color: #ffffff;
+  border-color: #ffffff;
+}
+
+.data-panel {
+  margin-top: 0;
+  height: auto !important;
+}
+
+.data-panel .background {
+  position: relative;
+}
+
+.data-panel__inside {
+  display: none;
+}
+	
+.data-panel + footer {
+  margin-top: 0;
+}
+
+.jcf-select .jcf-select-drop .jcf-select-drop-content {
+  width: 100%;
+}
+
+.jcf-select.jcf-drop-active .jcf-select-opener {
+  background-color: #f6f6f6;
+}
+
+.jcf-select .jcf-select-drop .jcf-select-drop-content ul li span {
+  font-family: SourceSansPro-Regular;
+}
+
+.table-container {
+	max-width:1200px;
+	max-height: 800px;
+	margin: 0 auto;
+	overflow-y: scroll;
+	font-size: 10px;
+	margin-top: 60px;
+}
+
+.table-container table {
+	table-layout: fixed;
+}
+
+.table-container .A {
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.table-container .table .thead-dark th  {
+	background-color: #189bb0;
+	border-color: #189bb0;
+	word-wrap: break-word;
+	width: 150px;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.table-container td{
+	max-width: 200px;
+	word-wrap: break-word;
+}
+
+.airline-name {
+	font-weight: 700;
+        color: #242039;
+}
+
+.airline-list {
+	width:100%;
+	padding: 10px;
+	background: #f6f6f6;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+form input, form select {
+	margin-right:10px;
+}
+
+.airline-column {
+	display: inline-block;
+	vertical-align: top;
+	padding:15px;
+        max-width: 100%;
+        overflow-wrap: break-word;
+}
+
+.airline-extra {
+	display: none;
+}
+
+.airline-text {
+	font-size: .875rem;
+	font-weight: 600;
+	text-transform: uppercase;
+        font-family: SourceSansPro-Regular;
+}
+
+.airline-view {
+	cursor: pointer;
+	color: #189bb0;
+}
+
+.grid-icon {
+	color: rgba(0,0,0,0.3);
+	cursor: pointer;
+	padding: 2px;
+	font-size: 20px;
+}
+
+.grid-icons {
+	margin-bottom: 10px;
+	display: none;
+}
+
+.grid-icon.active {
+	color: #333333;
+}
+
+.form-control {
+	display: inline-block;
+	background-color: #f6f6f6;
+	border: 1px solid #eaeaea;
+	height: 3.5rem !important;
+	line-height: 2.875rem;
+	padding: 0.5rem;
+	padding-left: 1.5625rem;
+	padding-right: 5.125rem;
+	cursor: pointer;
+	text-transform: uppercase;
+	color: #242039;
+	font-size: 0.875rem;
+	border: 1px solid #eaeaea;
+	background-color: #f6f6f6;
+	border-radius: 3px;
+}
+
+[type="submit"]{
+	text-align: center;
+	padding: 1rem 1.875rem;
+	margin: 1.25rem 0;
+	font-size: 0.875rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	display: inline-block;
+	min-height: 3.3125rem;
+	line-height: normal;
+	outline: 0;
+	color: #FFF;
+	border: 2px solid #1a9cb1;
+	background-color: #1a9cb1;
+	color: #FFF;
+	border-radius: 4px;
+}
+
+.filter-title {
+	display: none;
+	font-family: SourceSansPro-Bold, arial, sans-serif;
+	background: #189bb0;
+	color: #ffffff;
+	padding:5px;
+	text-align: center;
+	margin-top: 15px;
+}
+
+.form-check {
+	background: #f6f6f6;
+	padding: 1.25rem;
+}
+
+.filters-badge, .filter-clear-btn {
+	background: #189bb0;
+	border-color: #189bb0;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	display:none;
+	margin-bottom: 10px;
+        text-transform: unset;
+        min-height: auto;
+        font-family: SourceSansPro-Regular;
+}
+
+.filter-clear .filter-clear-btn {
+  display: inline-block;
+  background: #ffffff;
+  border: #189bb0 2px solid;
+  color: #189bb0;
+}
+
+.airlines-checkboxes {
+	max-height: 400px;
+	overflow-y: scroll;
+}
+
+.airline-column a {
+    font-family: RobotoSlab-Regular;
+}
+
+.filter-selects{
+	position: relative;
+	padding: 60px 40px 75px 40px;
+	max-width: 960px;
+	margin: 0 auto;
+	z-index: 2;
+}
+
+.filter-container {
+	position: relative;
+	display: inline-block;
+	min-width: 32%;
+            vertical-align: top;
+	font-size: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.filter-select {
+	    font-size: 0.875rem;
+	width:100%;
+	background: #ffffff;
+	margin-right:20px;
+	border: 1px solid #d7d7d7;
+	cursor: pointer;
+	height: 3.5rem;
+    color: #242039;
+    background: #f6f6f6;
+    border: 1px solid #eaeaea;
+        border-radius: 3px;
+    padding-left: 20px;  
+    line-height: 3.5rem !important;
+    font-family: SourceSansPro-Regular;
+        text-transform: uppercase;
+}
+
+.filter-select .filter-text {
+   font-family: SourceSansPro-Regular;
+   font-size: 0.875rem;
+}
+
+.airline-select {
+	font-size: 16px;
+	position: relative;
+	padding: 10px 20px;
+	width:100%;
+	border:1px solid #d7d7d7;
+	background: #ffffff;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	cursor: pointer;
+}
+
+.airline-select::-ms-expand {
+	display: none;
+}
+
+.filter-select:after, .airline-select-icon {
+	content: "\e90c";
+        font-family: 'icomoon' !important; 
+	position:absolute;
+            font-size: 0.75rem;
+	right: 30px;
+	top:0;
+	display: inline-block;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	
+}
+
+.icon-x:after{
+	    content: "\e90d";
+}
+
+.ancillary-checkboxes, .gds-checkboxes, .airlines-checkboxes {
+    position: absolute;
+    font-size: 16px;
+    top: 96%;
+    left: 0px;
+    z-index: 3;
+    background: #f6f6f6;
+    border: 1px solid #d7d7d7;
+    border-top: none;
+    width: 89%;
+    display: none;
+    font-size: 0.875rem;
+    font-family: SourceSansPro-Regular;
+    text-transform: uppercase;
+    margin-left: 15px;
+}
+
+.filter-selects-title {
+	color: #ffffff;
+	margin-bottom: 20px;
+	font-weight: 600;
+	font-size: .875rem;
+	text-transform: uppercase;
+        font-family: SourceSansPro-Regular;
+}
+
+.container-background {
+	background: url('https://www2.arccorp.com/globalassets/homepage/expediareport-jumbotron_1400x680.jpg') center center no-repeat;
+	background-size: cover;
+	color: #ffffff;
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+.container-filter {
+	background: #189bb0 url(https://www2.arccorp.com/static/images/map-pattern.svg);
+}
+
+.filter-clear {
+	text-align:center;
+        margin-top: 20px;
+}
+
+.filter-clear .btn-light {
+	color: #189bb0;
+	border: none;
+	margin-top: 20px;
+	font-weight: 600;
+        
+}
+
+.expandAll .airline-extra {
+	display: block;
+}
+
+
+.border-image {
+    width: 100%;
+    height: 6px;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url(https://www2.arccorp.com/static/images/colorbar-large-flip.svg) no-repeat center top;
+    background-size: 100% 100%;
+}
+	
+
+.filters-row {
+    margin-bottom: 15px;
+}
+
+.jcf-select .jcf-select-text {
+  font-family: SourceSansPro-Regular;
+}
+
+@media screen and (max-width: 992px) {
+	.filter-container , .ancillary-checkboxes, .gds-checkboxes, .airlines-checkboxes {
+		width: 100%;
+		margin:0 auto 15px auto;
+	}
+        .filter-container {
+                padding-left: 0;
+               padding-right: 0;
+        }
+.jcf-select {
+    max-width: 100%;
+}
+}
